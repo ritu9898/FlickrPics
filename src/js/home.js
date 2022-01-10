@@ -7,16 +7,18 @@ class Home extends React.Component {
   constructor() {
     super();
     this.state = {
-      list: []
+      list: [],
+      q: ''
     }
   }
 
-  componentDidMount() {
-    let query = "cat";
+  callAPI(query) {
+
+    let url = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=636e1481b4f3c446d26b8eb6ebfe7127&tags=${query}&per_page=24&format=json&nojsoncallback=1`;
 
     axios
     .get(
-      `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=636e1481b4f3c446d26b8eb6ebfe7127&tags=${query}&per_page=24&format=json&nojsoncallback=1`
+      url
       // 'https://api.flickr.com/services/rest/?format=json&method=flickr.photos.search&api_key=2fd41b49fedfd589dc265350521ab539&tags='+"dog"+'&jsoncallback=?'
     )
     .then(response => {
@@ -30,18 +32,37 @@ class Home extends React.Component {
         error
       );
     });
+
+    this.setState({
+      list: this.props.list
+    })
+    // console.log('Called: '+ query);
+  }
+
+  componentDidMount() {
+    if(this.props.query)
+    {
+      this.setState({
+        q: this.props.query
+      })
+      console.log(this.state.q);
+      // let url = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=636e1481b4f3c446d26b8eb6ebfe7127&tags=${this.state.q}&per_page=24&format=json&nojsoncallback=1`;
+      // this.callAPI(url);
+      this.callAPI(this.state.q);
+    }
   }
 
   render(){
     let d;
+    let count = 0;
     // const list = photo; //From config file
 
     return(
       <>
-        {/* <p>{this.state.list.length}</p> */}
+        {console.log('First List: '+this.props.list)}
         <div className="img-grid">
           {
-            this.state.list.map((i, key) => {
+            this.props.list.map((i, key) => {
               d = `http://farm${i.farm}.staticflickr.com/${i.server}/${i.id}_${i.secret}.jpg`
               return (<img src={d} alt="image" className="zoom" id={key} key={key} />)
             })
