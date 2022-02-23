@@ -2,6 +2,14 @@ import React from "react";
 import axios from "axios";
 import '../css/App.css';
 import Home from "./home";
+import Add from "./Add";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
+import ScrollToTop from "./ScrollToTop";
 
 class Search extends React.Component {
 
@@ -59,7 +67,8 @@ class Search extends React.Component {
           <input type="text" id="query"  />
           <button className="btn" onClick={this.searchQuery}>Search</button>
         </div>
-        <Home list={this.state.list} />
+        <div>
+        </div>
       </div>
     );
   }

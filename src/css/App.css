@@ -1,5 +1,9 @@
 .App {
   text-align: center;
+  font-size: 12px;
+  font-family: 'Dongle', sans-serif;
+  font-family: 'Inter', sans-serif;
+  font-family: 'Spectral', serif;
 }
 
 .App-logo {
@@ -34,6 +38,7 @@ input {
   margin: 20px;
   /* background-color: #282c34; */
   caret-color: gray;  /* A vertical line that hovers over the text-box */
+  box-shadow: 0 0px 5px 0 rgba(0,0,0,0.2);
 }
 
 img {
@@ -44,10 +49,27 @@ img {
   padding: 20px;
 }
 
+.img-grid span {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
 .img-grid {
   width: 70%;
   padding: 0 15%;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
+
+.img-grid div {
+  position: relative;
+}
+
 
 .search-bar {
   margin: 20px;
@@ -71,7 +93,7 @@ input, .btn {
 }
 
 .zoom {
-  padding: 50px;
+  padding: 20px;
   transition: transform .2s; /* Animation */
   width: 200px;
   height: 200px;
@@ -79,7 +101,7 @@ input, .btn {
 }
 
 .zoom:hover {
-  transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 
 @keyframes App-logo-spin {
